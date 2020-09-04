@@ -1,4 +1,4 @@
-# PokemonBot
+# SecretaryBot
 
 ## 概要
 
