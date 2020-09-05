@@ -89,7 +89,7 @@ def calendar_json(calendar_data, today):
             {
                 "fallback": "recruit",
                 "color": "00BFFF",
-                "title": "インターンの予定",
+                "title": "仕事の予定",
                 "text": work_cal
             },
             {
