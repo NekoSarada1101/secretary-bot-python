@@ -26,5 +26,20 @@ def morning_trigger(event, context):
     return ""
 
 
-if __name__ == '__main__':
-    morning_trigger()
+def test():
+    JST = timezone(timedelta(hours=+9), 'JST')
+    today = datetime.now(JST)
+    # 一日
+    data = google_calendar.fetch_day_calendar_data(today)
+    json_data = json.dumps(data).encode("utf-8")
+    requests.post(DIARY_URL, json_data)
+
+    # 1週間
+    data = google_calendar.fetch_week_calendar_data(today.replace(day=14))
+    json_data = json.dumps(data).encode("utf-8")
+    requests.post(DIARY_URL, json_data)
+    return ""
+
+
+if __name__ == "__main__":
+    test()
