@@ -3,13 +3,12 @@ from datetime import datetime, timedelta, timezone
 from setting_secret import *
 
 
-def fetch_all_calendar_data(date):
-    my_cal = fetch_today_events(MY_MAIL, date)
-    work_cal = fetch_today_events(WORK_MAIL, date)
-    school_cal = fetch_today_events(SCHOOL_MAIL, date)
-    timetable_cal = fetch_today_events(TIMETABLE_MAIL, date)
+def fetch_day_calendar_data(date):
+    period = create_day_period(date)
+    calendar_data = fetch_all_calendar(period)
+    data = calendar_json(calendar_data, date.strftime("%m月%d日"))
+    return data
 
-    data = calendar_json(my_cal, work_cal, school_cal, timetable_cal, date.strftime("%m月%d日"))
 
     return data
 
