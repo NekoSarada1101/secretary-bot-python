@@ -41,8 +41,8 @@ def fetch_all_calendar(period):
 def fetch_events(calendar_id, period):
     service = googleapiclient.discovery.build('calendar', 'v3', credentials=CREDENTIALS)
 
-    min = date.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S%z")
-    max = date.replace(hour=23, minute=59, second=59).strftime("%Y-%m-%dT%H:%M:%S%z")
+    min = period[0]
+    max = period[1]
 
     page_token = None
     while True:
