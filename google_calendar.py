@@ -10,6 +10,12 @@ def fetch_day_calendar_data(date):
     return data
 
 
+def create_day_period(date):
+    min = date.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S%z")
+    max = date.replace(hour=23, minute=59, second=59).strftime("%Y-%m-%dT%H:%M:%S%z")
+    return [min, max]
+
+
     return data
 
 
