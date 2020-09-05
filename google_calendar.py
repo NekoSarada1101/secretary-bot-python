@@ -71,7 +71,11 @@ def fetch_events(calendar_id, period):
     return list_text
 
 
-def calendar_json(my_cal, work_cal, school_cal, timetable_cal, today):
+def calendar_json(calendar_data, today):
+    my_cal = calendar_data[0]
+    work_cal = calendar_data[1]
+    school_cal = calendar_data[2]
+    timetable_cal = calendar_data[3]
     data = {
         "response_type": "ephemeral",
         "text": today + "の予定をお知らせします。",
