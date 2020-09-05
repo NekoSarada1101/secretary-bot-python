@@ -89,7 +89,7 @@ def do_post(e):
             pick_date = datetime.strptime(payload["actions"][0]["selected_date"], "%Y-%m-%d")
             pick_date = today.replace(year=pick_date.year, month=pick_date.month, day=pick_date.day)
 
-            data = google_calendar.fetch_all_calendar_data(pick_date)
+            data = google_calendar.fetch_day_calendar_data(pick_date)
 
     json_data = json.dumps(data).encode("utf-8")
     requests.post(HISHO_URL, json_data)
