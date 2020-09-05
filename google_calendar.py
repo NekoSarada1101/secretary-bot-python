@@ -23,7 +23,12 @@ def fetch_week_calendar_data(date):
     return data
 
 
-def fetch_today_events(calendar_id, date):
+def create_week_period(date):
+    min = date.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S%z")
+    max = (date.replace(hour=23, minute=59, second=59) + timedelta(days=6)).strftime("%Y-%m-%dT%H:%M:%S%z")
+    return [min, max]
+
+
     service = googleapiclient.discovery.build('calendar', 'v3', credentials=CREDENTIALS)
 
     min = date.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S%z")
