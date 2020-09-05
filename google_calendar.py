@@ -38,6 +38,7 @@ def fetch_all_calendar(period):
     return [my_cal, work_cal, school_cal, timetable_cal]
 
 
+def fetch_events(calendar_id, period):
     service = googleapiclient.discovery.build('calendar', 'v3', credentials=CREDENTIALS)
 
     min = date.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S%z")
