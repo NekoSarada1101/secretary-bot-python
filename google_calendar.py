@@ -29,6 +29,15 @@ def create_week_period(date):
     return [min, max]
 
 
+def fetch_all_calendar(period):
+    my_cal = fetch_events(MY_MAIL, period)
+    work_cal = fetch_events(WORK_MAIL, period)
+    school_cal = fetch_events(SCHOOL_MAIL, period)
+    timetable_cal = fetch_events(TIMETABLE_MAIL, period)
+
+    return [my_cal, work_cal, school_cal, timetable_cal]
+
+
     service = googleapiclient.discovery.build('calendar', 'v3', credentials=CREDENTIALS)
 
     min = date.replace(hour=0, minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S%z")
