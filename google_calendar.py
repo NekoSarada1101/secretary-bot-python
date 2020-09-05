@@ -16,6 +16,10 @@ def create_day_period(date):
     return [min, max]
 
 
+def fetch_week_calendar_data(date):
+    period = create_week_period(date)
+    calendar_data = fetch_all_calendar(period)
+    data = calendar_json(calendar_data, "今週")
     return data
 
 
