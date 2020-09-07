@@ -18,52 +18,7 @@ def do_post(e):
         raise Exception("not allowed token")
 
     if token == SLACK_TOKEN:
-        data = {
-            "response_type": "ephemeral",
-            "attachments": [
-                {
-                    "color": "FFFFFF",
-                    "blocks": [
-                        {
-                            "type": "section",
-                            "text": {
-                                "type": "plain_text",
-                                "text": "何かご用でしょうか？",
-                            }
-                        },
-                        {
-                            "type": "actions",
-                            "elements": [
-                                {
-                                    "type": "button",
-                                    "text": {
-                                        "type": "plain_text",
-                                        "text": "予定を教えて"
-                                    },
-                                    "value": "calendar"
-                                },
-                                {
-                                    "type": "button",
-                                    "text": {
-                                        "type": "plain_text",
-                                        "text": "天気を教えて"
-                                    },
-                                    "value": "weather"
-                                },
-                                {
-                                    "type": "button",
-                                    "text": {
-                                        "type": "plain_text",
-                                        "text": "テーマを変えたい"
-                                    },
-                                    "value": "theme"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
+        data = menu_json()
 
     else:
         value = None
@@ -94,3 +49,53 @@ def do_post(e):
     json_data = json.dumps(data).encode("utf-8")
     requests.post(HISHO_URL, json_data)
     return ""
+
+
+def menu_json():
+    data = {
+        "response_type": "ephemeral",
+        "attachments": [
+            {
+                "color": "FFFFFF",
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "何かご用でしょうか？",
+                        }
+                    },
+                    {
+                        "type": "actions",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "予定を教えて"
+                                },
+                                "value": "calendar"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "天気を教えて"
+                                },
+                                "value": "weather"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "テーマを変えたい"
+                                },
+                                "value": "theme"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+    return data
