@@ -42,11 +42,9 @@ def do_post(e):
             print(error)
 
         if action_id == "date":
-            JST = timezone(timedelta(hours=+9), 'JST')
-            today = datetime.now(JST)
+            today = datetime.now(timezone(timedelta(hours=+9), 'JST'))
             pick_date = datetime.strptime(payload["actions"][0]["selected_date"], "%Y-%m-%d")
             pick_date = today.replace(year=pick_date.year, month=pick_date.month, day=pick_date.day)
-
             data = google_calendar.fetch_day_calendar_data(pick_date)
 
     json_data = json.dumps(data).encode("utf-8")
