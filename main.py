@@ -1,5 +1,6 @@
 from setting_secret import *
 import google_calendar
+import weather
 import json
 import requests
 from datetime import datetime, timedelta, timezone
@@ -31,6 +32,8 @@ def do_post(e):
 
         if value == "calendar":
             data = google_calendar.date_pick_json()
+        elif value == "weather":
+            data = weather.weather_menu_json()
 
         # action_idの取得、判定
         try:
