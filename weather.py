@@ -85,7 +85,19 @@ def day_weather_json(dt: str, weather: List[str], image: List[str], max_temp: Li
     return data
 
 
-def weather_menu_json():
+def week_weather_json(dt: List[str], weather: List[str], day_temp: List[str]) -> dict:
+    attachments = []  # type: List[dict]
+    for i in range(len(dt)):
+        attachments.append({"text": " *" + dt[i] + "の天気* ： `" + weather[i] + "`  *気温* ： `" + day_temp[i] + "`",
+                            "color": "FFFFFF"})
+
+    data = {  # type: dict
+        "response_type": "ephemeral",
+        "attachments":
+            attachments
+    }
+    return data
+
     data = {
         "response_type": "ephemeral",
         "attachments": [
