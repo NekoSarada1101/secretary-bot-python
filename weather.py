@@ -149,4 +149,5 @@ def weather_menu_json() -> dict:
 
 
 if __name__ == "__main__":
-    weather()
+    data_json = fetch_weather_data("week")
+    print(data_json)
