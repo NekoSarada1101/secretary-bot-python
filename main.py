@@ -26,6 +26,7 @@ def do_post(e):
         # valueの取得、判定
         try:
             value = payload["actions"][0]["value"]
+            print(value)
         except KeyError as error:
             print(error)
 
@@ -43,6 +44,7 @@ def do_post(e):
         # action_idの取得、判定
         try:
             action_id = payload['actions'][0]['action_id']
+            print(action_id)
         except KeyError as error:
             print(error)
 
@@ -53,6 +55,7 @@ def do_post(e):
             data = google_calendar.fetch_day_calendar_data(pick_date)
 
     json_data = json.dumps(data).encode("utf-8")
+    print(data)
     requests.post(HISHO_URL, json_data)
     return ""
 
