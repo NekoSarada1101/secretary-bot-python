@@ -54,6 +54,36 @@ def fetch_weather_data(when: str) -> dict:
     return data
 
 
+def day_weather_json(dt: str, weather: List[str], image: List[str], max_temp: List[str], min_temp: List[str],
+                     wind_speed: List[str], pop: List[str]) -> dict:
+    data = {
+        "response_type": "ephemeral",
+        "attachments": [
+            {
+                "text": "*" + dt + "の天気* ： `" + weather[0] + "`",
+                "color": "33ff66",
+                "image_url": "http://openweathermap.org/img/wn/" + image[0] + "@2x.png"
+            },
+            {
+                "color": "FF0000",
+                "text": " *最高気温* ： `" + max_temp[0] + "`"
+            },
+            {
+                "color": "00BFFF",
+                "text": " *最低気温* ： `" + min_temp[0] + "`"
+            },
+            {
+                "color": "FFFFFF",
+                "text": " *風速* 　　： `" + wind_speed[0] + "`"
+            },
+            {
+                "color": "5579EC",
+                "text": " *降水確率* ： `" + pop[0] + "`"
+            }
+        ]
+    }
+    return data
+
 
 def weather_menu_json():
     data = {
