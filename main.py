@@ -11,8 +11,7 @@ def do_post(e):
     payload = None
     try:
         payload = json.loads(e.form.get("payload"))
-        print(payload)
-    except Exception as error:
+    except TypeError as error:
         print(error)
 
     if token != SLACK_TOKEN and payload['token'] != SLACK_TOKEN:
