@@ -98,6 +98,8 @@ def week_weather_json(dt: List[str], weather: List[str], day_temp: List[str]) ->
     }
     return data
 
+
+def weather_menu_json() -> dict:
     data = {
         "response_type": "ephemeral",
         "attachments": [

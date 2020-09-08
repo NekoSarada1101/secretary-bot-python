@@ -6,23 +6,25 @@ import requests
 from datetime import datetime, timedelta, timezone
 
 
-def do_post(e):
-    token = e.form.get('token')
-    payload = None
+def do_post(e: requests) -> str:
+    token = e.form.get('token')  # type: str
+    payload = {}  # type: dict
     try:
         payload = json.loads(e.form.get("payload"))
     except TypeError as error:
         print(error)
 
+    # 認証
     if token != SLACK_TOKEN and payload['token'] != SLACK_TOKEN:
         raise Exception("not allowed token")
 
+    data = {}  # type: dict
+    # Slack上で最初に表示する
     if token == SLACK_TOKEN:
         data = menu_json()
-
-    else:
-        value = None
-        action_id = None
+    else:  # Slack上でメニューの操作がされた時
+        value = ""  # type: str
+        action_id = ""  # type: str
         # valueの取得、判定
         try:
             value = payload["actions"][0]["value"]
@@ -49,19 +51,19 @@ def do_post(e):
             print(error)
 
         if action_id == "date":
-            today = datetime.now(timezone(timedelta(hours=+9), 'JST'))
-            pick_date = datetime.strptime(payload["actions"][0]["selected_date"], "%Y-%m-%d")
+            today = datetime.now(timezone(timedelta(hours=+9), 'JST'))  # type: datetime
+            pick_date = datetime.strptime(payload["actions"][0]["selected_date"], "%Y-%m-%d")  # type: datetime
             pick_date = today.replace(year=pick_date.year, month=pick_date.month, day=pick_date.day)
             data = google_calendar.fetch_day_calendar_data(pick_date)
 
-    json_data = json.dumps(data).encode("utf-8")
     print(data)
+    json_data = json.dumps(data).encode("utf-8")  # type: json
     requests.post(HISHO_URL, json_data)
     return ""
 
 
-def menu_json():
-    data = {
+def menu_json() -> dict:
+    data = {  # type: dict
         "response_type": "ephemeral",
         "attachments": [
             {
