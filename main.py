@@ -34,6 +34,12 @@ def do_post(e):
             data = google_calendar.date_pick_json()
         elif value == "weather":
             data = weather.weather_menu_json()
+        elif value == "weatherToday":
+            data = weather.fetch_weather_data("today")
+        elif value == "weatherTomorrow":
+            data = weather.fetch_weather_data("tomorrow")
+        elif value == "weatherWeek":
+            data = weather.fetch_weather_data("week")
 
         # action_idの取得、判定
         try:
