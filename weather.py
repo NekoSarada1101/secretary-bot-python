@@ -118,7 +118,7 @@ def week_weather_json(dt: List[str], weather: List[str], day_temp: List[str]) ->
                                 "type": "button",
                                 "text": {
                                     "type": "plain_text",
-                                    "text": "現在の天気"
+                                    "text": "今日の天気"
                                 },
                                 "value": "weatherToday"
                             },
