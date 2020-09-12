@@ -1,6 +1,7 @@
 from setting_secret import *
 import google_calendar
 import weather
+import theme
 import json
 import requests
 from datetime import datetime, timedelta, timezone
@@ -24,6 +25,7 @@ def do_post(e: requests) -> str:
         data = menu_json()
     else:  # Slack上でメニューの操作がされた時
         value = ""  # type: str
+        name = ""  # type: str
         action_id = ""  # type: str
         # valueの取得、判定
         try:
@@ -42,6 +44,18 @@ def do_post(e: requests) -> str:
             data = weather.fetch_weather_data("tomorrow")
         elif value == "weatherWeek":
             data = weather.fetch_weather_data("week")
+        elif value == "theme":
+            data = theme.theme_json()
+
+        # nameの取得、判定
+        try:
+            name = payload['actions'][0]['name']
+            print(name)
+        except KeyError as error:
+            print(error)
+
+        if name == "theme":
+            data = theme.theme_info_json(value)
 
         # action_idの取得、判定
         try:
@@ -55,6 +69,10 @@ def do_post(e: requests) -> str:
             pick_date = datetime.strptime(payload["actions"][0]["selected_date"], "%Y-%m-%d")  # type: datetime
             pick_date = today.replace(year=pick_date.year, month=pick_date.month, day=pick_date.day)
             data = google_calendar.fetch_day_calendar_data(pick_date)
+
+        elif action_id == "select":
+            select_value = payload["actions"][0]["selected_option"]["value"]  # type: str
+            data = theme.theme_list_json(select_value)
 
     print(data)
     json_data = json.dumps(data).encode("utf-8")  # type: json
