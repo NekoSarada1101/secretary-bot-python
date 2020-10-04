@@ -79,7 +79,7 @@ def theme_json() -> dict:
 
 
 def theme_list_json(select_value: str) -> dict:
-    fallbaack = ""  # type: str
+    fallback = ""  # type: str
     color = ""  # type: str
     textAndValue1 = ""  # type: str
     textAndValue2 = ""  # type: str
@@ -88,7 +88,7 @@ def theme_list_json(select_value: str) -> dict:
     textAndValue5 = ""  # type: str
 
     if select_value == "red":
-        fallbaack = "赤"
+        fallback = "赤"
         color = "FF0000"
         textAndValue1 = "Arizona State University"
         textAndValue2 = "Big Red"
@@ -97,7 +97,7 @@ def theme_list_json(select_value: str) -> dict:
         textAndValue5 = "Polygon"
 
     elif select_value == "orange":
-        fallbaack = "橙"
+        fallback = "橙"
         color = "EF810F"
         textAndValue1 = "FOLIO orange"
         textAndValue2 = "Halloween"
@@ -106,7 +106,7 @@ def theme_list_json(select_value: str) -> dict:
         textAndValue5 = "University Of Texas"
 
     elif select_value == "yellow":
-        fallbaack = "黄"
+        fallback = "黄"
         color = "FFFF00"
         textAndValue1 = "Gruvbox Light Medium"
         textAndValue2 = "JavaScript"
@@ -115,7 +115,7 @@ def theme_list_json(select_value: str) -> dict:
         textAndValue5 = "Put.io"
 
     elif select_value == "green":
-        fallbaack = "緑"
+        fallback = "緑"
         color = "00FF00"
         textAndValue1 = "Autumn"
         textAndValue2 = "Christmas"
@@ -124,7 +124,7 @@ def theme_list_json(select_value: str) -> dict:
         textAndValue5 = "Starbucks"
 
     elif select_value == "blue":
-        fallbaack = "青"
+        fallback = "青"
         color = "3300ff"
         textAndValue1 = "Dropbox"
         textAndValue2 = "PlayStation"
@@ -133,7 +133,7 @@ def theme_list_json(select_value: str) -> dict:
         textAndValue5 = "Twitter"
 
     elif select_value == "black":
-        fallbaack = "黒"
+        fallback = "黒"
         color = "000000"
         textAndValue1 = "Film Noir"
         textAndValue2 = "GitKraken"
@@ -142,7 +142,7 @@ def theme_list_json(select_value: str) -> dict:
         textAndValue5 = "Terminal"
 
     elif select_value == "white":
-        fallbaack = "白"
+        fallback = "白"
         color = "ffffff"
         textAndValue1 = "Github"
         textAndValue2 = "macOs"
@@ -156,7 +156,7 @@ def theme_list_json(select_value: str) -> dict:
             {
                 "callback_id": "button",
                 "text": "適用するカラーテーマを選択してください",
-                "fallback": fallbaack,
+                "fallback": fallback,
                 "color": color,
                 "attachment_type": "default",
                 "actions": [
