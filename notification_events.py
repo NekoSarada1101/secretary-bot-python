@@ -1,5 +1,6 @@
 import feedparser
 import gspread
+import random
 from typing import List
 from setting_secret import *
 
@@ -39,7 +40,8 @@ def fetch_tech_events(url: str) -> dict:
                 time = summary[summary.find("日時"):summary.find(" ", summary.find("日時"))]
                 place = summary[summary.find("会場"):len(summary)]
             link = entry.link  # type: str
-            attachments.append({"text": " *" + title + "* \n" + time + "\n" + place + "\n" + link, "color": "FFFFFF"})
+            rc = lambda: random.randint(0, 255)
+            attachments.append({"text": " *" + title + "* \n" + time + "\n" + place + "\n" + link, "color": '#{:X}{:X}{:X}'.format(rc(), rc(), rc())})
 
     data = {  # type: dict
         "response_type": "ephemeral",
