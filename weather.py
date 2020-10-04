@@ -58,6 +58,7 @@ def day_weather_json(dt: str, weather: List[str], image: List[str], max_temp: Li
                      wind_speed: List[str], pop: List[str]) -> dict:
     data = {
         "response_type": "ephemeral",
+        "text": dt + "の天気をお知らせします。",
         "attachments": [
             {
                 "text": "*" + dt + "の天気* ： `" + weather[0] + "`",
