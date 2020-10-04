@@ -45,9 +45,11 @@ def fetch_weather_data(when: str) -> dict:
 
     data = {}  # type: dict
     if when == "today":
-        data = day_weather_json("今日", weather, image, max_temp, min_temp, wind_speed, pop)
+        data = day_weather_json(datetime.fromtimestamp(response["daily"][0]["dt"]).strftime("%m/%d"), weather, image,
+                                max_temp, min_temp, wind_speed, pop)
     elif when == "tomorrow":
-        data = day_weather_json("明日", weather, image, max_temp, min_temp, wind_speed, pop)
+        data = day_weather_json(datetime.fromtimestamp(response["daily"][0]["dt"]).strftime("%m/%d"), weather, image,
+                                max_temp, min_temp, wind_speed, pop)
     elif when == "week":
         data = week_weather_json(dt, weather, day_temp)
 
